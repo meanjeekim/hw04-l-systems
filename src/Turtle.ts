@@ -10,6 +10,23 @@ class Turtle {
         this.orientation = orientation;
         this.depth = depth;
     }
+
+    draw() {
+        // return relevant info for getting a DrawingRule
+    }
+
+    moveForward() {
+        // change position
+    }
+
+    shiftDirection(dir: vec3) {
+        // TODO: How to change direction relative to a vec3...? transform??
+        // this.orientation * dir;
+    }
+
+    copyOf(): Turtle {
+        return new Turtle(this.position, this.orientation, this.depth + 1);
+    }
 }
 
 export default Turtle

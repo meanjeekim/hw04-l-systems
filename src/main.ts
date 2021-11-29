@@ -54,10 +54,44 @@ function loadScene() {
 function main() {
   // L-System setup
   const turtles: Turtle[] = [];
-  const grammar: string = "";
-  const alpha: Map<string, ExpansionRule> = new Map<string, ExpansionRule>();
+  const grammar: string = "F[+FX]-FX";
+  const gens: number = 3;
 
-  
+  const alpha: Map<string, ExpansionRule> = new Map<string, ExpansionRule>();
+  const draw: Map<string, DrawingRule> = new Map<string, DrawingRule>();
+
+  // Looping through gens until final grammar
+  for (var i = 0; i < gens; i++) {
+    var newGrammar = '';
+
+    // Iterating through grammar
+    for (var i = 0; i < grammar.length; i++) {
+      const c = grammar.charAt(i);
+      // if () // check if character is alphabet?
+      newGrammar.concat(alpha.get(c).getOutput());
+    }
+  }
+
+  // Output drawing based on final grammar
+  var curr: Turtle = new Turtle(new vec3(0), new vec3(0), 0);
+
+  for (var i = 0; i < grammar.length; i++) {
+    const c = grammar.charAt(i);
+    switch (c) {
+      case '[':   // push copy of current turtle
+        curr = curr.copyOf();
+        turtles.push(curr);
+      case ']':   // pop current turtle
+        turtles.pop();
+        curr = turtles[turtles.length - 1];
+      case '+':   // shift direction 30 deg
+        curr.shiftDirection(new vec3(30));
+      case '-':   // shift direction -30 deg
+        curr.shiftDirection(new vec3(-30));
+      default:    // draw based on char?
+        draw.get(c);
+    }
+  }
 
   // Initial display for framerate
   const stats = Stats();

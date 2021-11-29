@@ -1,15 +1,19 @@
 
+type output = {
+    p: number;
+    str: string;
+}
 
 class ExpansionRule {
-    pToOutput: number[][];  // [[p() assignment, output string], ...]
+    pToOutput: output[];  // [[p() assignment, output string], ...]
 
-    constructor(probs: number[][]) {
+    constructor(probs: output[]) {
         // probs: [[p(), output string], ...]
         this.pToOutput = [];
         var total = 0.;
         for (let i = 0; i < probs.length; i++) {
-            total += probs[i][0];
-            this.pToOutput.push([total, probs[i][1]])
+            total += probs[i].p;
+            this.pToOutput.push({p: total, str: probs[i].str})
         }
 
         if (total > 1.) {
@@ -17,11 +21,11 @@ class ExpansionRule {
         }
     }
 
-    getOutput() {
+    getOutput(): string {
         const rand = Math.random();
         for (let i = 0; i < this.pToOutput.length; i++) {
-            if (rand <= this.pToOutput[i][0]) {
-                return this.pToOutput[i][1]
+            if (rand <= this.pToOutput[i].p) {
+                return this.pToOutput[i].str;
             }
         }
         return 'ERROR: probabilities are off?';

@@ -6,7 +6,9 @@ import ScreenQuad from './geometry/ScreenQuad';
 import OpenGLRenderer from './rendering/gl/OpenGLRenderer';
 import Camera from './Camera';
 import {setGL} from './globals';
+import Turtle from './Turtle';
 import ShaderProgram, {Shader} from './rendering/gl/ShaderProgram';
+import ExpansionRule from './ExpansionRule';
 
 // Define an object with application parameters and button callbacks
 // This will be referred to by dat.GUI's functions that add GUI elements.
@@ -50,6 +52,13 @@ function loadScene() {
 }
 
 function main() {
+  // L-System setup
+  const turtles: Turtle[] = [];
+  const grammar: string = "";
+  const alpha: Map<string, ExpansionRule> = new Map<string, ExpansionRule>();
+
+  
+
   // Initial display for framerate
   const stats = Stats();
   stats.setMode(0);

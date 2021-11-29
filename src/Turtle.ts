@@ -15,8 +15,9 @@ class Turtle {
         // return relevant info for getting a DrawingRule
     }
 
-    moveForward() {
+    moveForward(dist: number) {
         // change position
+        // this.position = vec3.transformMat3(this.position, this.position, ); // how to format the mat3 again...
     }
 
     shiftDirection(dir: vec3) {

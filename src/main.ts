@@ -51,7 +51,7 @@ function loadScene() {
   square.setNumInstances(n * n); // grid of "particles"
 }
 
-function main() {
+function loadLSystem() {
   // L-System setup
   const turtles: Turtle[] = [];
   const grammar: string = "F[+FX]-FX";
@@ -92,6 +92,9 @@ function main() {
         draw.get(c);
     }
   }
+}
+
+function main() {
 
   // Initial display for framerate
   const stats = Stats();

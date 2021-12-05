@@ -1,4 +1,4 @@
-import {vec3} from 'gl-matrix';
+import {vec3, vec4} from 'gl-matrix';
 import * as Stats from 'stats-js';
 import * as DAT from 'dat-gui';
 import Square from './geometry/Square';
@@ -117,7 +117,7 @@ function loadLSystem() {
   }
 
   // Output drawing based on final grammar
-  turtles.push(new Turtle(new vec3(0), new vec3(0), 0));
+  turtles.push(new Turtle(new vec4(0), new vec4(0), 0));
 
   for (var i = 0; i < grammar.length; i++) {
     var curr: Turtle = turtles[turtles.length - 1];
@@ -129,9 +129,9 @@ function loadLSystem() {
       case ']':   // pop current turtle
         turtles.pop();
       case '+':   // shift direction 30 deg
-        curr.shiftDirection(new vec3(30));
+        curr.shiftDirection(new vec4(30));
       case '-':   // shift direction -30 deg
-        curr.shiftDirection(new vec3(-30));
+        curr.shiftDirection(new vec4(-30));
       default:    // draw based on char?
         draw.get(c);
     }

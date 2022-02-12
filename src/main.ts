@@ -115,6 +115,7 @@ function loadLSystem() {
 
     grammar = newGrammar;
   }
+  console.log(grammar);
 
   // Output drawing based on final grammar
   turtles.push(new Turtle(new vec4(0), new vec4(0), 0));
@@ -129,9 +130,9 @@ function loadLSystem() {
       case ']':   // pop current turtle
         turtles.pop();
       case '+':   // shift direction 30 deg
-        curr.shiftDirection(new vec4(30));
+        curr.shiftDirection(30);
       case '-':   // shift direction -30 deg
-        curr.shiftDirection(new vec4(-30));
+        curr.shiftDirection(-30);
       default:    // draw based on char?
         draw.get(c);
     }
